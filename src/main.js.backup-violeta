@@ -1,0 +1,239 @@
+
+import './style.css'
+
+const telefono = '595985155176'
+
+const fotos = [
+  'IMG-20261022-WA0369.jpg',
+  'IMG-20261022-WA0370.jpg',
+  'IMG-20261022-WA0373.jpg',
+  'IMG-20261022-WA0375.jpg',
+  'IMG-20261022-WA0376.jpg',
+  'IMG-20261022-WA0378.jpg',
+  'IMG-20261022-WA0379.jpg',
+  'IMG-20261022-WA0380.jpg',
+  'IMG-20261022-WA0382.jpg'
+]
+
+const imagenes = fotos.map(foto => `/images/${foto}`)
+
+const whatsapp = mensaje =>
+  `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`
+
+document.querySelector('#app').innerHTML = `
+  <header class="navbar">
+    <a class="marca" href="#inicio">
+      <span class="marca-icono">CQ</span>
+      <span>CASA QUINTA</span>
+    </a>
+
+    <a class="nav-link" href="#reservas">
+      Consultar reserva <span>↗</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-contenido">
+        <span class="etiqueta">UN LUGAR PARA DISFRUTAR</span>
+
+        <h1>
+          Tus mejores momentos
+          <span>comienzan aquí.</span>
+        </h1>
+
+        <p>
+          Un espacio para compartir, celebrar y disfrutar
+          con las personas que más querés.
+        </p>
+
+        <a class="boton" href="#reservas">
+          Consultar fecha para mi evento
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <p class="nota">
+          Consultá por tu fecha y organizá tu próxima celebración.
+        </p>
+      </div>
+
+      <div class="hero-foto">
+        <img
+          src="${imagenes[0]}"
+          alt="Vista principal de Casa Quinta"
+          fetchpriority="high"
+        >
+        <span class="foto-caption">Tu próximo encuentro comienza aquí</span>
+      </div>
+    </section>
+
+    <section class="intro">
+      <span class="etiqueta">UN ESPACIO PARA COMPARTIR</span>
+      <h2>Momentos que merecen ser disfrutados.</h2>
+      <p>
+        Conocé nuestros espacios y encontrá el lugar ideal
+        para tu próximo evento.
+      </p>
+    </section>
+
+    <section class="galeria" id="galeria">
+      <div class="seccion-heading">
+        <div>
+          <span class="etiqueta">CONOCÉ NUESTROS ESPACIOS</span>
+          <h2>Casa Quinta en imágenes</h2>
+        </div>
+        <span class="contador">9 fotografías</span>
+      </div>
+
+      <div class="galeria-grid">
+        ${imagenes.map((imagen, i) => `
+          <figure class="galeria-item">
+            <img
+              src="${imagen}"
+              alt="Casa Quinta, fotografía ${i + 1}"
+              loading="lazy"
+            >
+          </figure>
+        `).join('')}
+      </div>
+    </section>
+
+    <section class="reserva" id="reservas">
+      <div class="reserva-intro">
+        <span class="etiqueta">PLANIFICÁ TU VISITA</span>
+        <h2>¿Qué fecha estás buscando?</h2>
+        <p>
+          Completá los datos de tu evento.
+          Te contactaremos por WhatsApp para consultar
+          la disponibilidad y la información de la reserva.
+        </p>
+      </div>
+
+      <form id="form-reserva" class="form-reserva">
+        <div class="campo">
+          <label for="nombre">Tu nombre y apellido</label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            placeholder="Ej.: María González"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="fecha">Fecha del evento</label>
+          <input
+            id="fecha"
+            name="fecha"
+            type="date"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="horario">Horario aproximado</label>
+          <input
+            id="horario"
+            name="horario"
+            type="time"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="evento">Tipo de evento</label>
+          <select id="evento" name="evento" required>
+            <option value="">Seleccioná una opción</option>
+            <option value="Cumpleaños">Cumpleaños</option>
+            <option value="Reunión familiar">Reunión familiar</option>
+            <option value="Celebración">Celebración</option>
+            <option value="Evento con amigos">Evento con amigos</option>
+            <option value="Otro evento">Otro evento</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="invitados">Cantidad aproximada de invitados</label>
+          <input
+            id="invitados"
+            name="invitados"
+            type="number"
+            min="1"
+            placeholder="Ej.: 30 personas"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="detalles">Detalles adicionales (opcional)</label>
+          <textarea
+            id="detalles"
+            name="detalles"
+            rows="4"
+            placeholder="Contanos un poco sobre tu evento..."
+          ></textarea>
+        </div>
+
+        <button class="boton boton-formulario" type="submit">
+          Consultar disponibilidad por WhatsApp
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <p class="nota-formulario">
+          La fecha queda pendiente de confirmación hasta
+          que Casa Quinta verifique la disponibilidad.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="marca marca-footer" href="#inicio">CASA QUINTA</a>
+    <p>Un lugar para disfrutar y compartir.</p>
+    <a href="#reservas">Consultas y reservas por WhatsApp</a>
+    <span>© ${new Date().getFullYear()} Casa Quinta</span>
+  </footer>
+`
+
+// Evitar que se puedan seleccionar fechas anteriores a hoy.
+const fechaInput = document.querySelector('#fecha')
+const hoy = new Date()
+
+const fechaLocal = [
+  hoy.getFullYear(),
+  String(hoy.getMonth() + 1).padStart(2, '0'),
+  String(hoy.getDate()).padStart(2, '0')
+].join('-')
+
+fechaInput.min = fechaLocal
+
+// Preparar la consulta de reserva para WhatsApp.
+document.querySelector('#form-reserva').addEventListener(
+  'submit',
+  event => {
+    event.preventDefault()
+
+    const datos = new FormData(event.currentTarget)
+
+    const mensaje = [
+      'Hola, quisiera consultar disponibilidad para reservar Casa Quinta.',
+      '',
+      `Nombre: ${datos.get('nombre')}`,
+      `Fecha del evento: ${datos.get('fecha')}`,
+      `Horario: ${datos.get('horario')}`,
+      `Tipo de evento: ${datos.get('evento')}`,
+      `Cantidad de invitados: ${datos.get('invitados')}`,
+      `Detalles: ${datos.get('detalles') || 'Sin detalles adicionales'}`,
+      '',
+      '¿Me pueden confirmar si la fecha está disponible y pasarme información sobre el precio y la reserva?'
+    ].join('\n')
+
+    window.open(
+      whatsapp(mensaje),
+      '_blank',
+      'noopener,noreferrer'
+    )
+  }
+)
