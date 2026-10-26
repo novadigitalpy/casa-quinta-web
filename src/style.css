@@ -655,3 +655,444 @@ textarea {
     padding-top: 0;
   }
 }
+
+/* ===== NUEVA IDENTIDAD: CASA QUINTA BUENA HONDA ===== */
+
+:root {
+  --verde: #17452d;
+  --verde-claro: #e7efe3;
+  --texto: #192b20;
+  --texto-suave: #46564a;
+  --fondo: #fbfaf6;
+  --borde: #d6ded2;
+}
+
+.etiqueta {
+  color: #365d3d;
+}
+
+.marca {
+  color: #173f29;
+  letter-spacing: 1.1px;
+  line-height: 1.25;
+}
+
+.marca-icono {
+  flex-shrink: 0;
+  border: 2px solid #a18448;
+  color: #173f29;
+}
+
+.hero h1 span {
+  color: #315c39;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 85% 10%, #d5e3ce 0%, transparent 52%),
+    linear-gradient(135deg, #e9f0e4, #fbfaf6 85%);
+}
+
+.boton {
+  background: #17452d;
+  box-shadow: 0 8px 20px rgba(23, 69, 45, 0.16);
+  transition: background 220ms ease, transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.boton:hover {
+  background: #0e3320;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(23, 69, 45, 0.24);
+}
+
+.galeria-item {
+  background: #fff;
+  border: 1px solid rgba(23, 69, 45, 0.10);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(25, 43, 32, 0.07);
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.galeria-imagen {
+  position: relative;
+  overflow: hidden;
+}
+
+.galeria-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(.2,.7,.2,1);
+}
+
+.galeria-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(25, 43, 32, 0.13);
+}
+
+.galeria-item:hover img {
+  transform: scale(1.035);
+}
+
+.galeria-etiqueta {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(15, 42, 26, 0.88);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.galeria-texto {
+  position: relative;
+  padding: 22px 24px 25px;
+}
+
+.galeria-numero {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #8a6d32;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.galeria-texto h3 {
+  margin: 0 0 9px;
+  color: #192b20;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(22px, 2.4vw, 29px);
+  line-height: 1.2;
+}
+
+.galeria-texto p {
+  margin: 0;
+  color: #46564a;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.contador,
+.intro p,
+.reserva-intro > p,
+.nota-formulario {
+  color: #46564a;
+}
+
+.form-reserva {
+  border-color: #d6ded2;
+  box-shadow: 0 15px 40px rgba(25, 43, 32, 0.09);
+}
+
+.campo label {
+  font-size: 14px;
+}
+
+.footer {
+  background: #e9eee5;
+  color: #34483a;
+}
+
+/* Animación discreta al aparecer el contenido */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* En celular: una tarjeta amplia por fila */
+@media (max-width: 600px) {
+  .navbar {
+    align-items: center;
+  }
+
+  .marca {
+    max-width: 65%;
+    font-size: 12px;
+    letter-spacing: 0.7px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 34px 18px 28px;
+  }
+
+  .hero h1 {
+    font-size: clamp(37px, 10vw, 48px);
+    letter-spacing: -1px;
+  }
+
+  .hero-foto img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .intro {
+    padding: 48px 22px 28px;
+  }
+
+  .galeria {
+    padding: 25px 16px 55px;
+  }
+
+  .seccion-heading {
+    display: block;
+  }
+
+  .contador {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .galeria-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .galeria-item {
+    border-radius: 16px;
+  }
+
+  .galeria-item img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .galeria-texto {
+    padding: 19px 20px 22px;
+  }
+
+  .galeria-texto h3 {
+    font-size: 25px;
+  }
+
+  .galeria-texto p {
+    font-size: 15px;
+  }
+}
+
+/* Respeta la preferencia de reducir movimiento del dispositivo */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* PORTADA CON FOTO DE PISCINA */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 620px;
+  padding: 90px 6%;
+  isolation: isolate;
+  overflow: hidden;
+  background: #173f29;
+}
+
+.hero-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: -2;
+}
+
+.hero-foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 27, 18, .82),
+    rgba(8, 27, 18, .45)
+  );
+}
+
+.hero-foto .foto-caption {
+  display: none;
+}
+
+.hero-contenido {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  z-index: 1;
+}
+
+.hero .etiqueta,
+.hero h1,
+.hero h1 span,
+.hero-contenido > p {
+  color: #fff;
+}
+
+.hero h1 {
+  max-width: 850px;
+  text-shadow: 0 3px 16px rgba(0,0,0,.35);
+}
+
+.hero-contenido > p {
+  max-width: 580px;
+}
+
+.hero .boton {
+  background: #17452d;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 620px;
+    padding: 65px 22px;
+  }
+
+  .hero-foto {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .hero-foto img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+
+  .hero-foto::after {
+    background: rgba(8, 27, 18, .65);
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 9vw, 48px);
+  }
+}
+
+/* IDENTIDAD PREMIUM - CASA QUINTA BUENA ONDA */
+.hero-nombre {
+  display: block;
+  margin-bottom: 30px;
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(27px, 4.5vw, 54px);
+  font-weight: 700;
+  letter-spacing: clamp(2px, 0.6vw, 7px);
+  line-height: 1.2;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, .45);
+}
+
+.hero-nombre span {
+  display: block;
+  margin-top: 5px;
+  color: #e4c889;
+  font-size: 1.12em;
+  letter-spacing: clamp(3px, 0.9vw, 10px);
+}
+
+.hero .etiqueta {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #f4dfad;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin: 12px 0 22px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.8px;
+}
+
+.hero h1 span {
+  display: block;
+  color: #f0d49a;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-contenido > p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.hero .boton {
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 5px;
+  background: #b18a4a;
+  color: #fff;
+}
+
+.hero .boton:hover {
+  background: #947039;
+}
+
+@media (max-width: 600px) {
+  .hero-nombre {
+    margin-bottom: 25px;
+    font-size: clamp(26px, 7vw, 36px);
+    letter-spacing: 2px;
+  }
+
+  .hero-nombre span {
+    letter-spacing: 4px;
+  }
+
+  .hero .etiqueta {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .hero h1 {
+    margin: 14px 0 18px;
+    font-size: clamp(32px, 8.5vw, 43px);
+    line-height: 1.16;
+  }
+
+  .hero-contenido > p {
+    font-size: 15px;
+  }
+}

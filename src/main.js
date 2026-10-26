@@ -60,16 +60,16 @@ const fotos = [
   }
 ]
 
-const imagenes = fotos.map(foto => `/images/${foto.archivo}`)
+const imagenes = fotos.map(foto => `/casa-quinta-web/images/${foto.archivo}`)
 
 const whatsapp = mensaje =>
   `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`
 
 document.querySelector('#app').innerHTML = `
   <header class="navbar">
-    <a class="marca" href="#inicio" aria-label="Casa Quinta, inicio">
+    <a class="marca" href="#inicio" aria-label="Casa Quinta Buena Onda, inicio">
       <span class="marca-icono">CQ</span>
-      <span>CASA QUINTA</span>
+      <span>CASA QUINTA BUENA ONDA</span>
     </a>
 
     <a class="nav-link" href="#reservas">
@@ -80,21 +80,23 @@ document.querySelector('#app').innerHTML = `
   <main>
     <section class="hero" id="inicio">
       <div class="hero-contenido">
-        <span class="etiqueta">UN LUGAR PARA CREAR RECUERDOS</span>
+        <span class="hero-nombre">CASA QUINTA <span>BUENA ONDA</span></span>
+
+        <span class="etiqueta">TU LUGAR PARA DISFRUTAR</span>
 
         <h1>
-          Tu próxima celebración
-          <span>merece este lugar.</span>
+          Celebrá los momentos
+          <span>que merecen recordarse.</span>
         </h1>
 
         <p>
-          Imaginá una tarde de piscina, risas y buenos momentos
-          con las personas que más querés. En Casa Quinta,
-          cada encuentro puede convertirse en un recuerdo especial.
+          Piscina, diversión y buenos momentos para compartir con
+          tu familia y amigos. Prepará tu próxima celebración en
+          un ambiente pensado para disfrutar.
         </p>
 
         <a class="boton" href="#reservas">
-          ¡Quiero celebrar aquí!
+          Consultar disponibilidad
           <span aria-hidden="true">↗</span>
         </a>
 
@@ -105,8 +107,8 @@ document.querySelector('#app').innerHTML = `
 
       <div class="hero-foto">
         <img
-          src="${imagenes[0]}"
-          alt="Vista del patio de Casa Quinta, con mesa de pool, espacio de reunión y piscina"
+          src="/casa-quinta-web/images/banner-piscina.png"
+          alt="Vista del patio de Casa Quinta Buena Onda, con mesa de pool, espacio de reunión y piscina"
           fetchpriority="high"
         >
         <span class="foto-caption">
@@ -134,7 +136,7 @@ document.querySelector('#app').innerHTML = `
       <div class="seccion-heading">
         <div>
           <span class="etiqueta">DESCUBRÍ CADA RINCÓN</span>
-          <h2>Así se vive Casa Quinta</h2>
+          <h2>Así se vive Casa Quinta Buena Onda</h2>
         </div>
 
         <span class="contador">9 espacios en imágenes</span>
@@ -175,7 +177,7 @@ document.querySelector('#app').innerHTML = `
 
       <p>
         Elegí una fecha, contanos qué querés celebrar
-        y consultá la disponibilidad de Casa Quinta.
+        y consultá la disponibilidad de Casa Quinta Buena Onda.
       </p>
 
       <a class="boton" href="#reservas">
@@ -270,7 +272,7 @@ document.querySelector('#app').innerHTML = `
 
         <p class="nota-formulario">
           La fecha queda pendiente de confirmación hasta
-          que Casa Quinta verifique la disponibilidad.
+          que Casa Quinta Buena Onda verifique la disponibilidad.
         </p>
       </form>
     </section>
@@ -279,7 +281,7 @@ document.querySelector('#app').innerHTML = `
   <footer class="footer">
     <a class="marca marca-footer" href="#inicio">
       <span class="marca-icono">CQ</span>
-      <span>CASA QUINTA</span>
+      <span>CASA QUINTA BUENA ONDA</span>
     </a>
 
     <p>Tu próximo recuerdo comienza aquí.</p>
@@ -288,7 +290,7 @@ document.querySelector('#app').innerHTML = `
       Consultá tu fecha por WhatsApp ↗
     </a>
 
-    <span>© ${new Date().getFullYear()} Casa Quinta</span>
+    <span>© ${new Date().getFullYear()} Casa Quinta Buena Onda</span>
   </footer>
 `
 
@@ -313,7 +315,7 @@ document.querySelector('#form-reserva').addEventListener(
     const datos = new FormData(event.currentTarget)
 
     const mensaje = [
-      'Hola, quisiera consultar disponibilidad para reservar Casa Quinta.',
+      'Hola, quisiera consultar disponibilidad para reservar Casa Quinta Buena Onda.',
       '',
       `Nombre: ${datos.get('nombre')}`,
       `Fecha del evento: ${datos.get('fecha')}`,
@@ -332,3 +334,25 @@ document.querySelector('#form-reserva').addEventListener(
     )
   }
 )
+
+// Animaciones de entrada al desplazarse por la página.
+const elementosAnimados = document.querySelectorAll(
+  '.hero-contenido, .hero-foto, .intro, .seccion-heading, .galeria-item, .cierre, .reserva-intro, .form-reserva'
+)
+
+elementosAnimados.forEach(elemento => elemento.classList.add('reveal'))
+
+if ('IntersectionObserver' in window) {
+  const observador = new IntersectionObserver((entradas, observer) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('visible')
+        observer.unobserve(entrada.target)
+      }
+    })
+  }, { threshold: 0.12 })
+
+  elementosAnimados.forEach(elemento => observador.observe(elemento))
+} else {
+  elementosAnimados.forEach(elemento => elemento.classList.add('visible'))
+}
